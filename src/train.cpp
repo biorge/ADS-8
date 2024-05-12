@@ -21,6 +21,7 @@ void Train::addCage(bool light) {
     newCage->prev = lastCage;
     newCage->next = first;
     first->prev = newCage;
+    countOp += 2;
   }
 }
 
@@ -33,7 +34,6 @@ int Train::getLength() {
         countOp++;
         current = current->next;
     } while (current != first);
-    countOp--;
     return length;
 }
 
