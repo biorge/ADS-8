@@ -30,7 +30,8 @@ int Train::getLength() {
   Cage *current = first;
   do {
     length++;
-    countOp++;  // Увеличиваем счетчик шагов при перемещении между вагонами
+    if (current->next != first)
+      countOp++;
     current = current->next;
   } while (current != first);
   return length;
