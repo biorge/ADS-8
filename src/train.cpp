@@ -26,11 +26,11 @@ void Train::addCage(bool light) {
 
 int Train::getLength() {
   if (!first) return 0;
-
   int length = 0;
   Cage *current = first;
   do {
     length++;
+    countOp++;  // Увеличиваем счетчик шагов при перемещении между вагонами
     current = current->next;
   } while (current != first);
   return length;
