@@ -5,33 +5,28 @@ Train::Train() {
   countOp = 0;
 }
 
-Train::~Train() {
-  // Очистка списка вагонов
-  while (first != nullptr) {
-    Cage *temp = first;
-    first = first->next;
-    delete temp;
-  }
-}
-
 void Train::addCage(bool light) {
   Cage *newCage = new Cage;
   newCage->light = light;
+  newCage->next = nullptr;
+  newCage->prev = nullptr;
 
-  if (first == nullptr) {
+  if (!first) {
     first = newCage;
     first->next = first;
     first->prev = first;
   } else {
-    Cage *last = first->prev;
-    last->next = newCage;
-    newCage->prev = last;
+    Cage *lastCage = first->prev;
+    lastCage->next = newCage;
+    newCage->prev = lastCage;
     newCage->next = first;
     first->prev = newCage;
   }
 }
 
 int Train::getLength() {
+  if (!first) return 0;
+
   int length = 0;
   Cage *current = first;
   do {
